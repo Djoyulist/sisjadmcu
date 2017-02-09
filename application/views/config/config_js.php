@@ -1,0 +1,12 @@
+<script src="<?php echo base_url(); ?>plugins/jQuery-1.12.3/jquery-1.12.3.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/DataTables/datatables.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/Bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/morris/morris.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/select2/select2.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/daterangepicker/moment.min.js"></script>
+<script src="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker.js"></script>
+<script src="<?php echo base_url(); ?>plugins/AdminLTE-2.3.6/js/app.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/docxtemplater.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/FileSaver.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jszip-utils.js"></script>

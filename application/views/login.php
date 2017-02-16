@@ -30,7 +30,7 @@
 						</div>
 					</form>
 					
-					<div class="footer-login">&copy; copyright PPNS | PT. PAL Indonesia</div>
+					<div class="footer-login">&copy; copyright Politeknik Perkapalan Negeri Surabaya | PT. PAL Indonesia</div>
 				</div>
 			</div>
 		</div>

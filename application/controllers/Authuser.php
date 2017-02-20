@@ -4,20 +4,20 @@ class Authuser extends CI_Controller {
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('madmin');
+		$this->load->model('Madmin');
 	}
-	
+
 	function index()
 	{
 		$this->load->view('login');
 	}
-	
+
 	function validate()
-	{ 
+	{
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
-		
-		$query = $this->madmin->check_username($username,$password);
+
+		$query = $this->Madmin->check_username($username,$password);
 		if($query){
 			$data = array(
 				'username' => $username,
@@ -30,7 +30,7 @@ class Authuser extends CI_Controller {
 			$this->index();
 		}
 	}
-	
+
 	function logout(){
 		$this->session->sess_destroy();
 		$this->index();

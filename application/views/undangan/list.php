@@ -27,7 +27,7 @@
 						<a href="<?php echo base_url(); ?>undangan/change/<?php echo $row['id_anggota']?>/1" class="btn btn-danger btn-xs" onclick="return confirm('Apakah data ini ingin dimasukan ke undangan khusus ?');"><i class="fa fa-share-square-o"></i> Undangan Khusus : OFF</a>
 					<?php endif;?>
 				<?php endif;?>
-			
+
 				<button onClick="print('<?php echo $row['nip']?>','<?php echo $row['nama_anggota']?>','<?php echo $row['jabatan']?>','<?php echo $row['bagian']?>','<?php echo $row['tgl_mcu']?>','<?php echo $row['nama_tgl']?>', '<?php echo $row['type_checkup']?>')" class="btn btn-primary btn-xs"><i class="fa fa-print"></i> Print</button>
 				<?php if($row['process_status'] == NULL):?>
 					<a href="<?php echo base_url(); ?>undangan/pelaksana/<?php echo $row['id_anggota']?>/<?php echo $row['tgl_mcu']?>" class="btn btn-success btn-xs" onclick="return confirm('Apakah data ini ingin dimasukan ke pelaksanaan MCU ?');"><i class="fa fa-user"></i> Pelaksanaan MCU</a>
@@ -42,21 +42,21 @@
 	$(document).ready( function () {
 		$('#table_id').DataTable();
 	} );
-	
+
 	function print(nip, nama, jabatan, divisi, tgl_mcu, hari, type){
 		var baseUrl = "<?php echo base_url(); ?>";
 		var text_checkup = "berkala";
 		if(type == "1"){
 			text_checkup = "khusus";
 		}
-		
+
 		var loadFile=function(url,callback){
 			JSZipUtils.getBinaryContent(url,callback);
 		}
 		loadFile(baseUrl+"assets/template/template_undangan_mcu.docx",function(err,content){
 			if (err) { throw e};
 			doc=new Docxgen(content);
-			doc.setData( 
+			doc.setData(
 				{"nip":nip,
 				"nama":nama,
 				"jabatan":jabatan,
@@ -74,11 +74,11 @@
 			saveAs(out,"undangan_mcu_"+nip+"_"+nama+".docx")
 		})
 	}
-	
+
 	String.prototype.capitalize = function() {
 		return this.charAt(0).toUpperCase() + this.slice(1);
 	}
-	
+
 	function namahari(dayname){
 		var name = "";
 		if(dayname == "Monday"){
@@ -98,12 +98,12 @@
 		}
 		return name;
 	}
-	
+
 	function getCurrentDate(){
 		var d = new Date();
 		var day = d.getDate();
 		var year = d.getFullYear();
-		
+
 		var month = new Array();
 		month[0] = "Januari";
 		month[1] = "Februari";
@@ -118,7 +118,7 @@
 		month[10] = "November";
 		month[11] = "Desember";
 		var month = month[d.getMonth()];
-		
+
 		return day +" "+ month +" "+ year;
 	}
 </script>

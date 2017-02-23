@@ -17,7 +17,7 @@ class Welcome extends CI_Controller {
 			$data['sumCalon'] = $this->Mmcu->sumCalonMcu();
 			$data['sumPelaksana'] = $this->Mmcu->sumPelaksanaMcu();
 			$data['sumSelesai'] = $this->Mmcu->sumSelesaiMcu();
-			$data['sumPelaksana'] = $this->Mmcu->sumPelaksanaMcu();
+			//$data['sumPelaksana'] = $this->Mmcu->sumPelaksanaMcu();
 			$data['sumPegawai'] = $this->Manggota->sumPegawai();
 			$this->load->view('welcome', $data);
 		}else{

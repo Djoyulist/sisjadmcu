@@ -161,6 +161,7 @@ class Mmcu extends CI_Model{
 		$sqlstr .= 'from tb_anggota agt ';
 		$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE(agt.tgl_lahir), "-%m-%d")) = mcu.tgl_mcu ';
 		$sqlstr .= 'where CONCAT(YEAR(NOW()), DATE_FORMAT(DATE(tgl_lahir), "-%m-%d")) BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 7 DAY) AND DATE(NOW()) ';
+		$sqlstr .= 'AND agt.id_anggota not in (Select id_anggota from tr_mcu where process_status IN (0,1) and DATE_FORMAT(tgl_mcu, "%m") = DATE_FORMAT(NOW(), "%m") ) ';
 		$query = $this->db->query($sqlstr);
 		if($query->num_rows() > 0){
 			foreach($query->result_array() as $row){
@@ -206,7 +207,7 @@ class Mmcu extends CI_Model{
 	{
 		$sqlstr = 'select COUNT(agt.id_anggota) as total_mcu ';
 		$sqlstr .= 'from tb_anggota agt ';
-		$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
+		//$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
 		$sqlstr .= 'where CONCAT(YEAR(NOW()), DATE_FORMAT(DATE_SUB(DATE(tgl_lahir), INTERVAL 7 DAY), "-%m-%d")) BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 7 DAY) AND DATE(NOW()) ';
 		$query = $this->db->query($sqlstr);
 		$data = $query->result_array();
@@ -215,9 +216,11 @@ class Mmcu extends CI_Model{
 
 	function sumPelaksanaMcu()
 	{
-		$sqlstr = 'select COUNT(agt.id_anggota) as total_mcu ';
-		$sqlstr .= 'from tb_anggota agt ';
-		$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
+		//$sqlstr = 'select COUNT(agt.id_anggota) as total_mcu ';
+		//$sqlstr .= 'from tb_anggota agt ';
+		//$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
+		$sqlstr = 'select COUNT(*) as total_mcu ';
+		$sqlstr .= 'from tr_mcu mcu ';
 		$sqlstr .= 'where mcu.process_status = 0 and DATE_FORMAT(mcu.tgl_mcu, "%m") = DATE_FORMAT(NOW(), "%m") ';
 		$query = $this->db->query($sqlstr);
 		$data = $query->result_array();

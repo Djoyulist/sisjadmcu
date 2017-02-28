@@ -66,6 +66,7 @@ class Mmcu extends CI_Model{
 		$sqlstr .= '	group by agt.bagian ';
 		$sqlstr .= ') s on agt.bagian = s.bagian ';
 		$sqlstr .= 'where DATE_FORMAT(mcu.tgl_mcu, "%m") = DATE_FORMAT(NOW(), "%m") ';
+		$sqlstr .= 'Group by agt.bagian, b.blm_proses, s.sudah_proses ';
 		$query = $this->db->query($sqlstr);
 		if($query->num_rows() > 0){
 			foreach($query->result_array() as $row){
@@ -143,8 +144,8 @@ class Mmcu extends CI_Model{
 		$sqlstr .= 'from rf_abnormal rf ';
 		$sqlstr .= 'LEFT JOIN tb_abnormal ab on rf.id_abnormal = ab.id_abnormal ';
 		$sqlstr .= 'LEFT JOIN tr_mcu mcu on rf.id_mcu = mcu.id_mcu ';
-		$sqlstr .= 'where '.$strCriteria.'';
-		$sqlstr .= 'GROUP BY ab.kode_abnormal ';
+		$sqlstr .= 'where '.$strCriteria.' ';
+		$sqlstr .= 'GROUP BY ab.kode_abnormal, ab.keterangan_abnormal ';
 		$query = $this->db->query($sqlstr);
 		if($query->num_rows() > 0){
 			foreach($query->result_array() as $row){

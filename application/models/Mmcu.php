@@ -65,7 +65,7 @@ class Mmcu extends CI_Model{
 		$sqlstr .= '	where mcu_s.process_status = 1 ';
 		$sqlstr .= '	group by agt.bagian ';
 		$sqlstr .= ') s on agt.bagian = s.bagian ';
-		$sqlstr .= 'where DATE_FORMAT(mcu.tgl_mcu, "%m") = DATE_FORMAT(NOW(), "%m") ';
+		$sqlstr .= 'where DATE_FORMAT(mcu.tgl_mcu, "%y") = DATE_FORMAT(NOW(), "%y") ';
 		$sqlstr .= 'Group by agt.bagian, b.blm_proses, s.sudah_proses ';
 		$query = $this->db->query($sqlstr);
 		if($query->num_rows() > 0){
@@ -82,7 +82,7 @@ class Mmcu extends CI_Model{
 		$sqlstr = 'select mcu.id_mcu, mcu.id_anggota, agt.nip, agt.nama_anggota, agt.bagian, agt.jabatan, mcu.tgl_mcu, DAYNAME(mcu.tgl_mcu) as nama_tgl, mcu.process_status ';
 		$sqlstr .= 'from tr_mcu mcu ';
 		$sqlstr .= 'left join tb_anggota agt on mcu.id_anggota = agt.id_anggota ';
-		$sqlstr .= 'where DATE_FORMAT(mcu.tgl_mcu, "%m") = DATE_FORMAT(NOW(), "%m") and agt.bagian = "'. str_replace("%20"," ",$divisi).'"';
+		$sqlstr .= 'where DATE_FORMAT(mcu.tgl_mcu, "%y") = DATE_FORMAT(NOW(), "%y") and agt.bagian = "'. str_replace("%20"," ",$divisi).'"';
 		$query = $this->db->query($sqlstr);
 		if($query->num_rows() > 0){
 			foreach($query->result_array() as $row){

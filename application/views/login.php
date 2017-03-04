@@ -11,7 +11,7 @@
 			<div class="col-md-offset-5 col-md-3">
 				<div class="form-login">
 					<h4>Selamat Datang.</h4>
-					
+
 					<?php $msg = $this->session->flashdata('error');?>
 					<?php if ($msg):?>
 						<div class="alert alert-error" style="text-align:center">
@@ -24,12 +24,12 @@
 						<input type="password" id="userPassword" name="password" class="form-control input-sm chat-input" placeholder="password" />
 						</br>
 						<div class="wrapper">
-						<span class="group-btn">     
+						<span class="group-btn">
 							<input type="submit" value="Sign in" class="btn btn-primary"/>
 						</span>
 						</div>
 					</form>
-					
+
 					<div class="footer-login">&copy; copyright Politeknik Perkapalan Negeri Surabaya | PT. PAL Indonesia</div>
 				</div>
 			</div>

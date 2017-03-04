@@ -1,7 +1,7 @@
 <?php $this->load->view('config/view_top');?>
 <?php $this->load->view('config/box_top');?>
 
-<h3>Rekapitulasi bulan <span id="title_rekap"></span></h3>
+<h3>Rekapitulasi tahun <span id="title_rekap"></span></h3>
 <h5>Divisi : <?php echo @$bagian; ?></h5>
 <table id="table_id" class="table table-striped table-hover">
 	<thead>
@@ -39,16 +39,16 @@
 		$('#table_id').DataTable();
 		getCurrentDate();
 	} );
-	
+
 	function openInNewTab(url) {
 		var win = window.open(url, '_blank');
 		win.focus();
 	}
-	
+
 	function getCurrentDate(){
 		var d = new Date();
 		var year = d.getFullYear();
-		
+
 		var month = new Array();
 		month[0] = "Januari";
 		month[1] = "Februari";
@@ -63,8 +63,8 @@
 		month[10] = "November";
 		month[11] = "Desember";
 		var month = month[d.getMonth()];
-		
-		document.getElementById("title_rekap").innerHTML =  month +" "+ year;
+
+		document.getElementById("title_rekap").innerHTML =  " "+ year;
 	}
 </script>
 <?php $this->load->view('config/view_bottom');?>

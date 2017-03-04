@@ -7,13 +7,13 @@
 			width:100%;
 			text-align:center;
 		}
-		tr, td, th { 
+		tr, td, th {
 			border: 1px solid black;
 		}
 	</style>
 </head>
 <body onload="window.print()">
-	<h3>Rekapitulasi bulan <?php echo @$month_year; ?></h3>
+	<h3>Rekapitulasi tahun <?php echo @$month_year; ?></h3>
 	<h5>Divisi : <?php echo @$bagian; ?></h5>
 	<table id="table_id" class="table-style">
 		<thead>

@@ -7,7 +7,7 @@
 			width:100%;
 			text-align:center;
 		}
-		tr, td, th { 
+		tr, td, th {
 			border: 1px solid black;
 		}
 	</style>
@@ -15,7 +15,7 @@
 <body onload="window.print()">
 </body>
 </html>
-<h3>Rekapitulasi bulan <?php echo @$month_year; ?></h3>
+<h3>Rekapitulasi tahun <?php echo @$month_year; ?></h3>
 <table id="table_id" class="table-style">
 	<thead>
 		<tr>

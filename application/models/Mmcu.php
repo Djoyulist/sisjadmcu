@@ -204,6 +204,7 @@ class Mmcu extends CI_Model{
 		return $this->db->delete($this->mcu);
 	}
 
+	
 	function sumCalonMcu()
 	{
 		$sqlstr = 'select COUNT(agt.id_anggota) as total_mcu ';
@@ -228,12 +229,23 @@ class Mmcu extends CI_Model{
 		return $data[0]['total_mcu'];
 	}
 
-	function sumSelesaiMcu()
+	/* function sumSelesaiMcu()
 	{
 		$sqlstr = 'select COUNT(agt.id_anggota) as total_mcu ';
 		$sqlstr .= 'from tb_anggota agt ';
 		$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
 		$sqlstr .= 'where mcu.process_status = 1 and DATE_FORMAT(mcu.tgl_mcu, "%m") = DATE_FORMAT(NOW(), "%m") ';
+		$query = $this->db->query($sqlstr);
+		$data = $query->result_array();
+		return $data[0]['total_mcu'];
+	} */
+	
+	function sumSelesaiMcu()
+	{
+		$sqlstr = 'select COUNT(mcu.id_anggota) as total_mcu ';
+		$sqlstr .= 'from tr_mcu mcu ';
+		/*$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu '; */
+		$sqlstr .= 'where mcu.process_status = 1 and DATE_FORMAT(mcu.tgl_mcu, "%y") = DATE_FORMAT(NOW(), "%y") ';
 		$query = $this->db->query($sqlstr);
 		$data = $query->result_array();
 		return $data[0]['total_mcu'];

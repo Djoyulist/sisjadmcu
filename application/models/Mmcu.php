@@ -55,14 +55,14 @@ class Mmcu extends CI_Model{
 		$sqlstr .= '	select agt.bagian, COUNT(mcu_b.process_status) as blm_proses ';
 		$sqlstr .= '	from tr_mcu mcu_b ';
 		$sqlstr .= '	left join tb_anggota agt on mcu_b.id_anggota = agt.id_anggota ';
-		$sqlstr .= '	where mcu_b.process_status = 0 ';
+		$sqlstr .= '	where mcu_b.process_status = 0 and DATE_FORMAT(mcu_b.tgl_mcu, "%y") = DATE_FORMAT(NOW(), "%y")';
 		$sqlstr .= '	group by agt.bagian ';
 		$sqlstr .= ') b on agt.bagian = b.bagian ';
 		$sqlstr .= 'left join ( ';
 		$sqlstr .= '	select agt.bagian, COUNT(mcu_s.process_status) as sudah_proses ';
 		$sqlstr .= '	from tr_mcu mcu_s ';
 		$sqlstr .= '	left join tb_anggota agt on mcu_s.id_anggota = agt.id_anggota ';
-		$sqlstr .= '	where mcu_s.process_status = 1 ';
+		$sqlstr .= '	where mcu_s.process_status = 1 and DATE_FORMAT(mcu_s.tgl_mcu, "%y") = DATE_FORMAT(NOW(), "%y")';
 		$sqlstr .= '	group by agt.bagian ';
 		$sqlstr .= ') s on agt.bagian = s.bagian ';
 		$sqlstr .= 'where DATE_FORMAT(mcu.tgl_mcu, "%y") = DATE_FORMAT(NOW(), "%y") ';

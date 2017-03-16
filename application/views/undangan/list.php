@@ -39,8 +39,10 @@
 </table>
 <?php $this->load->view('config/box_bottom');?>
 <script>
-	$(document).ready( function () {
-		$('#table_id').DataTable();
+	$(document).ready(function() {
+    $('#table_id').DataTable( {
+        "order": [[ 4, "desc" ]]
+    } );
 	} );
 
 	function print(nip, nama, jabatan, divisi, tgl_mcu, hari, type){

@@ -41,7 +41,7 @@
 <script>
 	$(document).ready(function() {
     $('#table_id').DataTable( {
-        "order": [[ 4, "desc" ]]
+        "order": [[ 4, "asc" ]]
     } );
 	} );
 

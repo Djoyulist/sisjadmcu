@@ -158,10 +158,10 @@ class Mmcu extends CI_Model{
 	}
 
 	function getListUndangan(){
-		$sqlstr = 'select agt.id_anggota, nip, nama_anggota, bagian, jabatan, CONCAT(DATE_FORMAT(DATE(tgl_lahir), "%d-%m-"),YEAR(NOW())) as tgl_mcu, DAYNAME(DATE_SUB(DATE(tgl_lahir), INTERVAL 7 DAY)) as nama_tgl, mcu.process_status, agt.type_checkup ';
+		$sqlstr = 'select agt.id_anggota, nip, nama_anggota, bagian, jabatan, CONCAT(DATE_FORMAT(DATE(tgl_lahir), "%d-%m-"),YEAR(NOW())) as tgl_mcu, DAYNAME(DATE_ADD(DATE(tgl_lahir), INTERVAL 7 DAY)) as nama_tgl, mcu.process_status, agt.type_checkup ';
 		$sqlstr .= 'from tb_anggota agt ';
 		$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE(agt.tgl_lahir), "-%m-%d")) = mcu.tgl_mcu ';
-		$sqlstr .= 'where CONCAT(YEAR(NOW()), DATE_FORMAT(DATE(tgl_lahir), "-%m-%d")) BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 7 DAY) AND DATE(NOW()) ';
+		$sqlstr .= 'where CONCAT(YEAR(NOW()), DATE_FORMAT(DATE(tgl_lahir), "-%m-%d")) BETWEEN DATE(NOW()) AND DATE_ADD(DATE(NOW()), INTERVAL 7 DAY) ';
 		$sqlstr .= 'AND agt.id_anggota not in (Select id_anggota from tr_mcu where process_status IN (0,1) and DATE_FORMAT(tgl_mcu, "%m") = DATE_FORMAT(NOW(), "%m") ) ';
 		$query = $this->db->query($sqlstr);
 		if($query->num_rows() > 0){
@@ -204,13 +204,13 @@ class Mmcu extends CI_Model{
 		return $this->db->delete($this->mcu);
 	}
 
-	
+
 	function sumCalonMcu()
 	{
 		$sqlstr = 'select COUNT(agt.id_anggota) as total_mcu ';
 		$sqlstr .= 'from tb_anggota agt ';
-		//$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
-		$sqlstr .= 'where CONCAT(YEAR(NOW()), DATE_FORMAT(DATE_SUB(DATE(tgl_lahir), INTERVAL 7 DAY), "-%m-%d")) BETWEEN DATE_SUB(DATE(NOW()), INTERVAL 7 DAY) AND DATE(NOW()) ';
+		//$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_ADD(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
+		$sqlstr .= 'where CONCAT(YEAR(NOW()), DATE_FORMAT(DATE(tgl_lahir), "-%m-%d")) BETWEEN DATE(NOW()) AND DATE_ADD(DATE(NOW()), INTERVAL 7 DAY) ';
 		$query = $this->db->query($sqlstr);
 		$data = $query->result_array();
 		return $data[0]['total_mcu'];
@@ -220,7 +220,7 @@ class Mmcu extends CI_Model{
 	{
 		//$sqlstr = 'select COUNT(agt.id_anggota) as total_mcu ';
 		//$sqlstr .= 'from tb_anggota agt ';
-		//$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
+		//$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_ADD(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
 		$sqlstr = 'select COUNT(*) as total_mcu ';
 		$sqlstr .= 'from tr_mcu mcu ';
 		$sqlstr .= 'where mcu.process_status = 0 and DATE_FORMAT(mcu.tgl_mcu, "%m") = DATE_FORMAT(NOW(), "%m") ';
@@ -233,18 +233,18 @@ class Mmcu extends CI_Model{
 	{
 		$sqlstr = 'select COUNT(agt.id_anggota) as total_mcu ';
 		$sqlstr .= 'from tb_anggota agt ';
-		$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
+		$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_ADD(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu ';
 		$sqlstr .= 'where mcu.process_status = 1 and DATE_FORMAT(mcu.tgl_mcu, "%m") = DATE_FORMAT(NOW(), "%m") ';
 		$query = $this->db->query($sqlstr);
 		$data = $query->result_array();
 		return $data[0]['total_mcu'];
 	} */
-	
+
 	function sumSelesaiMcu()
 	{
 		$sqlstr = 'select COUNT(mcu.id_anggota) as total_mcu ';
 		$sqlstr .= 'from tr_mcu mcu ';
-		/*$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_SUB(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu '; */
+		/*$sqlstr .= 'left join tr_mcu mcu on agt.id_anggota = mcu.id_anggota and CONCAT(YEAR(NOW()),DATE_FORMAT(DATE_ADD(DATE(agt.tgl_lahir),INTERVAL 7 DAY), "-%m-%d")) = mcu.tgl_mcu '; */
 		$sqlstr .= 'where mcu.process_status = 1 and DATE_FORMAT(mcu.tgl_mcu, "%y") = DATE_FORMAT(NOW(), "%y") ';
 		$query = $this->db->query($sqlstr);
 		$data = $query->result_array();

@@ -24,3 +24,5 @@
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>plugins/daterangepicker/daterangepicker.css">
 
 <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/style.css">
+
+<link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/css/jquery.steps.css">

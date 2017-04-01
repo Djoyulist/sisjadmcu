@@ -10,3 +10,4 @@
 <script src="<?php echo base_url(); ?>assets/js/docxtemplater.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/FileSaver.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/js/jszip-utils.js"></script>
+<script src="<?php echo base_url(); ?>assets/js/jquery.steps.min.js"></script>

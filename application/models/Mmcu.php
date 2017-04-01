@@ -7,12 +7,40 @@ class Mmcu extends CI_Model{
 		parent::__construct();
 	}
 
-	function setData($id_anggota,$tgl_mcu,$grade,$process_status)
+	function setData($data)
 	{
-		$this->id_anggota= $id_anggota;
-		$this->tgl_mcu= $tgl_mcu;
-		$this->grade= $grade;
-		$this->process_status= $process_status;
+		$this->id_anggota= $data['id_anggota'];
+		$this->tgl_mcu= $data['tgl_mcu'];
+		$this->grade= $data['grade'];
+		$this->process_status= $data['process_status'];
+		$this->gol_darah= $data['gol_darah'];
+		$this->umur= $data['umur'];
+		$this->tinggi_badan= $data['tinggi_badan'];
+		$this->berat_badan= $data['berat_badan'];
+		$this->tekanan_darah= $data['tekanan_darah'];
+		$this->gigi= $data['gigi'];
+		$this->jantung= $data['jantung'];
+		$this->paru= $data['paru'];
+		$this->hati= $data['hati'];
+		$this->limpah= $data['limpah'];
+		$this->mata_vod= $data['mata_vod'];
+		$this->mata_vos= $data['mata_vos'];
+		$this->mata_voo= $data['mata_voo'];
+		$this->mata_keterangan= $data['mata_keterangan'];
+		$this->warna= $data['warna'];
+		$this->telinga= $data['telinga'];
+		$this->hidung= $data['hidung'];
+		$this->radiologi_thorax= $data['radiologi_thorax'];
+		$this->radiologi_ecg= $data['radiologi_ecg'];
+		$this->hb= $data['hb'];
+		$this->kimia_sgot= $data['kimia_sgot'];
+		$this->kimia_sgpt= $data['kimia_sgpt'];
+		$this->kimia_creatinin= $data['kimia_creatinin'];
+		$this->kimia_ureum= $data['kimia_ureum'];
+		$this->kimia_glukosa= $data['kimia_glukosa'];
+		$this->kimia_cholesterol_total= $data['kimia_cholesterol_total'];
+		$this->kimia_cholesterol_trigliserida= $data['kimia_cholesterol_trigliserida'];
+		$this->kimia_uric= $data['kimia_uric'];
 	}
 
 	function getlistPelaksana(){
@@ -180,7 +208,35 @@ class Mmcu extends CI_Model{
 			'id_anggota'=>$this->id_anggota,
 			'tgl_mcu'=>$this->tgl_mcu,
 			'grade'=>$this->grade,
-			'process_status'=>$this->process_status
+			'process_status'=>$this->process_status,
+			'gol_darah'=>$this->gol_darah,
+			'umur'=>$this->umur,
+			'tinggi_badan'=>$this->tinggi_badan,
+			'berat_badan'=>$this->berat_badan,
+			'tekanan_darah'=>$this->tekanan_darah,
+			'gigi'=>$this->gigi,
+			'jantung'=>$this->jantung,
+			'paru'=>$this->paru,
+			'hati'=>$this->hati,
+			'limpah'=>$this->limpah,
+			'mata_vod'=>$this->mata_vod,
+			'mata_vos'=>$this->mata_vos,
+			'mata_voo'=>$this->mata_voo,
+			'mata_keterangan'=>$this->mata_keterangan,
+			'warna'=>$this->warna,
+			'telinga'=>$this->telinga,
+			'hidung'=>$this->hidung,
+			'radiologi_thorax'=>$this->radiologi_thorax,
+			'radiologi_ecg'=>$this->radiologi_ecg,
+			'hb'=>$this->hb,
+			'kimia_sgot'=>$this->kimia_sgot,
+			'kimia_sgpt'=>$this->kimia_sgpt,
+			'kimia_creatinin'=>$this->kimia_creatinin,
+			'kimia_ureum'=>$this->kimia_ureum,
+			'kimia_glukosa'=>$this->kimia_glukosa,
+			'kimia_cholesterol_total'=>$this->kimia_cholesterol_total,
+			'kimia_cholesterol_trigliserida'=>$this->kimia_cholesterol_trigliserida,
+			'kimia_uric'=>$this->kimia_uric
 		);
 		return $this->db->insert($this->mcu, $arrayData);
 	}
@@ -191,7 +247,35 @@ class Mmcu extends CI_Model{
 			'id_anggota'=>$this->id_anggota,
 			'tgl_mcu'=>$this->tgl_mcu,
 			'grade'=>$this->grade,
-			'process_status'=>$this->process_status
+			'process_status'=>$this->process_status,
+			'gol_darah'=>$this->gol_darah,
+			'umur'=>$this->umur,
+			'tinggi_badan'=>$this->tinggi_badan,
+			'berat_badan'=>$this->berat_badan,
+			'tekanan_darah'=>$this->tekanan_darah,
+			'gigi'=>$this->gigi,
+			'jantung'=>$this->jantung,
+			'paru'=>$this->paru,
+			'hati'=>$this->hati,
+			'limpah'=>$this->limpah,
+			'mata_vod'=>$this->mata_vod,
+			'mata_vos'=>$this->mata_vos,
+			'mata_voo'=>$this->mata_voo,
+			'mata_keterangan'=>$this->mata_keterangan,
+			'warna'=>$this->warna,
+			'telinga'=>$this->telinga,
+			'hidung'=>$this->hidung,
+			'radiologi_thorax'=>$this->radiologi_thorax,
+			'radiologi_ecg'=>$this->radiologi_ecg,
+			'hb'=>$this->hb,
+			'kimia_sgot'=>$this->kimia_sgot,
+			'kimia_sgpt'=>$this->kimia_sgpt,
+			'kimia_creatinin'=>$this->kimia_creatinin,
+			'kimia_ureum'=>$this->kimia_ureum,
+			'kimia_glukosa'=>$this->kimia_glukosa,
+			'kimia_cholesterol_total'=>$this->kimia_cholesterol_total,
+			'kimia_cholesterol_trigliserida'=>$this->kimia_cholesterol_trigliserida,
+			'kimia_uric'=>$this->kimia_uric
 		);
 		$this->db->where('id_mcu', $id_mcu);
 
@@ -253,7 +337,9 @@ class Mmcu extends CI_Model{
 
 	function detail($id_mcu)
 	{
-		$sqlstr = 'select mcu.id_mcu, mcu.id_anggota, agt.nip, agt.nama_anggota, agt.bagian, mcu.tgl_mcu, mcu.grade ';
+		$sqlstr = 'select mcu.id_mcu, mcu.id_anggota, agt.nip, agt.nama_anggota, agt.bagian, agt.jenis_kelamin, mcu.tgl_mcu, mcu.grade, ';
+		$sqlstr .= 'mcu.gol_darah, mcu.umur, mcu.tinggi_badan, mcu.berat_badan, mcu.tekanan_darah, mcu.gigi, mcu.jantung, mcu.paru, mcu.hati, mcu.limpah, mcu.mata_vod, mcu.mata_vos, mcu.mata_voo, mcu.mata_keterangan, mcu.warna, mcu.telinga, mcu.hidung, mcu.radiologi_thorax, mcu.radiologi_ecg, ';
+		$sqlstr .= 'mcu.hb, mcu.kimia_sgot, mcu.kimia_sgpt, mcu.kimia_creatinin, mcu.kimia_ureum, mcu.kimia_glukosa, mcu.kimia_cholesterol_total, mcu.kimia_cholesterol_trigliserida, mcu.kimia_uric ';
 		$sqlstr .= 'from tr_mcu mcu ';
 		$sqlstr .= 'left join tb_anggota agt on mcu.id_anggota = agt.id_anggota ';
 		$sqlstr .= "where mcu.id_mcu = '".$id_mcu."'";

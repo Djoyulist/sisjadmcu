@@ -26,7 +26,41 @@ class Undangan extends CI_Controller {
 
 	public function pelaksana($id, $tgl_mcu){
 		$date = date_create($tgl_mcu);
-		$this->Mmcu->setData($id, date_format($date,"Y-m-d"), "", 0);
+		$data = array(
+				'id_anggota'      => $id,
+				'tgl_mcu'     		=> date_format($date,"Y-m-d"),
+				'grade'       		=> "",
+				'process_status'  => 0,
+				'gol_darah'				=> "",
+				'umur'						=> "",
+				'tinggi_badan'		=> "",
+				'berat_badan'			=> "",
+				'tekanan_darah'		=> "",
+				'gigi'						=> "",
+				'jantung'					=> "",
+				'paru'						=> "",
+				'hati'						=> "",
+				'limpah'					=> "",
+				'mata_vod'				=> "",
+				'mata_vos'				=> "",
+				'mata_voo'				=> "",
+				'mata_keterangan'	=> "",
+				'warna'						=> "",
+				'telinga'					=> "",
+				'hidung'					=> "",
+				'radiologi_thorax'=> "",
+				'radiologi_ecg'		=> "",
+				'hb'							=> "",
+				'kimia_sgot'			=> "",
+				'kimia_sgpt'			=> "",
+				'kimia_creatinin'	=> "",
+				'kimia_ureum'			=> "",
+				'kimia_glukosa'		=> "",
+				'kimia_cholesterol_total'=> "",
+				'kimia_cholesterol_trigliserida'=> "",
+				'kimia_uric'			=> ""
+		);
+		$this->Mmcu->setData($data);
 		$this->Mmcu->create();
 
 		$this->session->set_flashdata('success', true);

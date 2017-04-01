@@ -26,6 +26,8 @@
 				<?php if(@$link_back):?>
 					<a href="<?php echo @$link_back ?>" class="btn btn-default btn-sm" ><i class="fa fa-mail-reply"></i> Kembali </a>
 				<?php endif;?>
+			<?php elseif(@$print_form):?>
+					<button onClick="print()" class="btn btn-primary btn-sm"><i class="fa fa-print"></i> Print</button>
 			<?php endif;?>
 			</div>
 		</div>
